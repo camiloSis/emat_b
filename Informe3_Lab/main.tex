@@ -65,7 +65,7 @@
 \newcommand{\itemInput}{06/11/2026}
 \newcommand{\itemOutput}{08/11/2026}
 \newcommand{\itemPracticeNumber}{03}
-\newcommand{\itemTheme}{Probabilidad aplicada a la salud pública: tasas de mortalidad y pruebas diagnósticas con R}
+\newcommand{\itemTheme}{Distribuciones de probabilidad en R: hipergeométrica, binomial, Poisson y normal, con aproximaciones y gráficos Q-Q}
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -196,6 +196,26 @@ Supongamos que se toma una muestra aleatoria simple de 200 componentes del enví
     \item Utilice comandos de R para calcular la probabilidad exacta $P(Y \leq 10)$, así como las dos aproximaciones a esta probabilidad mencionadas en el inciso (a).
 \end{enumerate}
 
-\section{Actividades pag. 147}
+\section{Actividades pag. 157}
+
+\subsection{Ejercicio 10. Control de calidad del espesor de neumáticos: distribución normal}
+
+Una máquina fabrica neumáticos cuyo espesor de banda de rodamiento sigue una distribución normal con media 10 milímetros (mm) y desviación estándar 2 mm. El neumático tiene una garantía de 50\,000 millas. Para durar 50\,000 millas, el espesor de la banda de rodamiento debe ser de al menos 7.9 mm. Si se mide que el espesor de la banda de rodamiento es menor que 7.9 mm, entonces el neumático se vende como una marca alternativa con una garantía de menos de 50\,000 millas.
+
+\begin{enumerate}[label=(\alph*)]
+    \item Halle la proporción esperada de neumáticos vendidos bajo la marca alternativa.
+
+    \item La demanda de la marca alternativa de neumáticos es tal que el 30\% de la producción total debe venderse bajo el nombre de la marca alternativa. ¿A qué valor debería fijarse el espesor crítico, originalmente 7.9 mm, para satisfacer la demanda?
+\end{enumerate}
+
+\subsection{Ejercicio 11. Gráficos Q-Q normales con muestras simuladas}
+
+Responda las siguientes preguntas.
+
+\begin{enumerate}[label=(\alph*)]
+    \item Utilice el comando de R \texttt{x=runif(50)} para generar una muestra simulada de tamaño 50 de la distribución uniforme$(0, 1)$ y utilice comandos como los dados en la Sección 3.5.2 para construir un gráfico Q-Q normal. ¿Podría la muestra simulada de 50 observaciones provenir de una distribución normal? Explique.
+
+    \item Utilice el comando de R \texttt{x=rgamma(50, 1, 1)} para generar una muestra simulada de tamaño 50 de la distribución gamma$(1, 1)$ (véase el Ejercicio 13) y utilice comandos como los dados en la Sección 3.5.2 para construir un gráfico Q-Q normal. ¿Podría la muestra simulada de 50 observaciones provenir de una distribución normal? Explique.
+\end{enumerate}
 
 \end{document}
