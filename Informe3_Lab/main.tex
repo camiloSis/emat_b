@@ -221,6 +221,7 @@ Supongamos que, durante un período de cinco días, se marcan y liberan 200 pece
 En un envío de 10\,000 componentes electrónicos de cierto tipo, 300 son defectuosos. Supongamos que se seleccionan al azar 50 componentes para su inspección, y sea $X$ el número de componentes defectuosos encontrados.
 
 \begin{enumerate}[label=(\alph*)]
+
     \item La distribución de la variable aleatoria $X$ es (elija una):
     \begin{enumerate}[label=(\roman*)]
         \item binomial
@@ -229,11 +230,58 @@ En un envío de 10\,000 componentes electrónicos de cierto tipo, 300 son defect
         \item Poisson
     \end{enumerate}
 
+        \textbf{Distribución de $X$: (ii) hipergeométrica.}
+
+        Se seleccionan 50 componentes \emph{sin reemplazo} de un envío finito de 10\,000, formado por dos tipos de elementos (300 defectuosos y 9\,700 no defectuosos), y $X$ cuenta los defectuosos en la muestra. Como cada extracción modifica la composición del envío, los ensayos no son independientes y la probabilidad de obtener un componente defectuoso no es constante. Este es precisamente el modelo hipergeométrico:
+        \[
+        X \sim \text{Hipergeométrica}(M_1 = 300,\; M_2 = 9700,\; n = 50).
+        \]
+
     \item Utilice comandos de R para hallar $P(X \leq 3)$.
 
+        Si $X \sim \text{Hipergeométrica}(M_1, M_2, n)$,
+        \[
+        P(X = x) = \frac{\dbinom{M_1}{x}\dbinom{M_2}{n-x}}{\dbinom{M_1 + M_2}{n}}.
+        \]
+        Con $M_1 = 300$, $M_2 = 9700$ y $n = 50$:
+        \[
+        P(X \leq 3) = \sum_{x=0}^{3} \frac{\dbinom{300}{x}\dbinom{9700}{50-x}}{\dbinom{10\,000}{50}} \approx 0.9377,
+        \]
+        valor que calcula el comando \texttt{phyper(3, m = 300, n = 9700, k = 50)} de R.
+
+        \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.80\textwidth]{img/3.png}
+        \caption{$P(X \leq 3)$ en Rj Rditor, Jamovi}
+        \end{figure}
+
+
     \item ¿Cuál de las distribuciones enumeradas en el inciso (a) puede utilizarse como aproximación a la distribución de $X$?
+        
+    \textbf{Distribución aproximada: (i) binomial.}
+
+        La muestra ($n = 50$) representa solo el 0.5\,\% del envío ($N = 10\,000$). Con una fracción de muestreo tan pequeña, extraer sin reemplazo equivale prácticamente a extraer con reemplazo: la probabilidad de obtener un componente defectuoso casi no cambia entre extracciones y los ensayos son casi independientes. Por lo tanto:
+        \[
+        X \approx \text{Binomial}\left(n = 50,\; p = \tfrac{300}{10\,000} = 0.03\right).
+        \]
+
+        Si $X \approx \text{Binomial}(n, p)$,
+        \[
+        P(X = x) = \binom{n}{x}\,p^{x}(1-p)^{n-x}.
+        \]
+        Con $n = 50$ y $p = 0.03$:
+        \[
+        P(X \leq 3) = \sum_{x=0}^{3} \binom{50}{x}(0.03)^{x}(0.97)^{50-x} \approx 0.9372,
+        \]
 
     \item Utilizando la distribución aproximada, dé una aproximación de la probabilidad $P(X \leq 3)$ y compárela con la probabilidad exacta hallada en el inciso (b).
+        
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.80\textwidth]{img/3.png}
+        \caption{Aproximación de la probabilidad $P(X \leq 3)$ y comparación con la hallada en el inciso (b)}
+        \end{figure}
+
 \end{enumerate}
 
 \subsection{Ejercicio 21. Aproximaciones sucesivas de la distribución hipergeométrica}

@@ -2,7 +2,7 @@
 \contentsline {section}{\numberline {1}Actividades pag. 146}{3}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Ejercicio 14. Captura y recaptura de peces: distribución hipergeométrica y su aproximación}{3}{subsection.1.1}%
 \contentsline {subsection}{\numberline {1.2}Ejercicio 15. Inspección de componentes electrónicos defectuosos}{4}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Ejercicio 21. Aproximaciones sucesivas de la distribución hipergeométrica}{5}{subsection.1.3}%
-\contentsline {section}{\numberline {2}Actividades pag. 157}{5}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Ejercicio 10. Control de calidad del espesor de neumáticos: distribución normal}{5}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Ejercicio 11. Gráficos Q-Q normales con muestras simuladas}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {1.3}Ejercicio 21. Aproximaciones sucesivas de la distribución hipergeométrica}{6}{subsection.1.3}%
+\contentsline {section}{\numberline {2}Actividades pag. 157}{6}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Ejercicio 10. Control de calidad del espesor de neumáticos: distribución normal}{6}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Ejercicio 11. Gráficos Q-Q normales con muestras simuladas}{6}{subsection.2.2}%
