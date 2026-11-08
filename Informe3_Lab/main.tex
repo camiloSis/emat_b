@@ -159,11 +159,61 @@ Supongamos que, durante un período de cinco días, se marcan y liberan 200 pece
         \item Poisson
     \end{enumerate}
 
+    \textbf{Distribución de $X$: (ii) hipergeométrica.}
+
+        Se extraen 20 peces \emph{sin reemplazo} de una población finita de 1000, formada por dos tipos de elementos (200 marcados y 800 no marcados), y $X$ cuenta los marcados en la muestra. Como cada extracción modifica la composición de la población, los ensayos no son independientes y la probabilidad de éxito no es constante. Este es precisamente el modelo hipergeométrico:
+        \[
+        X \sim \text{Hipergeométrica}(M_1 = 200,\; M_2 = 800,\; n = 20).
+        \]
+
     \item Utilice comandos de R para hallar $P(X \leq 4)$.
 
+    Si $X \sim \text{Hipergeométrica}(M_1, M_2, n)$, la función de probabilidad de $X$ es
+    \[
+    P(X = x) = \frac{\dbinom{M_1}{x}\dbinom{M_2}{n-x}}{\dbinom{M_1 + M_2}{n}},
+    \]
+    donde $M_1$ es el número de elementos de interés (peces marcados), $M_2$ el número de elementos restantes (peces no marcados), $n$ el tamaño de la muestra y $x$ el número de elementos de interés observados en la muestra. La probabilidad acumulada se obtiene sumando los términos desde $x = 0$ hasta el valor requerido:
+    \[
+    P(X \leq 4) = \sum_{x=0}^{4} \frac{\dbinom{M_1}{x}\dbinom{M_2}{n-x}}{\dbinom{M_1 + M_2}{n}}.
+    \]
+    Con $M_1 = 200$, $M_2 = 800$ y $n = 20$:
+    \[
+    P(X \leq 4) = \sum_{x=0}^{4} \frac{\dbinom{200}{x}\dbinom{800}{20-x}}{\dbinom{1000}{20}} \approx 0.6301.
+    \]
+    Esta suma es la que calcula el comando \texttt{phyper(4, m = 200, n = 800, k = 20)} de R.
+
+        \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.80\textwidth]{img/1.png}
+        \caption{$P(X \leq 4)$ en Rj Rditor, Jamovi}
+        \end{figure}
+
     \item ¿Cuál de las distribuciones enumeradas en el inciso (a) puede utilizarse como aproximación a la distribución de $X$?
+    
+    \textbf{Distribución aproximada: (i) binomial.}
+
+        La muestra ($n = 20$) representa solo el 2\,\% de la población ($N = 1000$). Con una fracción de muestreo tan pequeña, extraer sin reemplazo equivale prácticamente a extraer con reemplazo: la probabilidad de obtener un pez marcado cambia muy poco entre extracciones y los ensayos son casi independientes. Por lo tanto:
+        \[
+        X \approx \text{Binomial}\left(n = 20,\; p = \tfrac{200}{1000} = 0.2\right).
+        \]
+
+        Si $X \approx \text{Binomial}(n, p)$, entonces
+        \[
+        P(X = x) = \binom{n}{x}\,p^{x}(1-p)^{n-x}.
+        \]
+        \[
+        P(X \leq 4) = \sum_{x=0}^{4} \binom{20}{x}(0.2)^{x}(0.8)^{20-x} \approx 0.6296,
+        \]
+        valor que calcula el comando \texttt{pbinom(4, size = 20, prob = 0.2)} de R.
 
     \item Utilizando la distribución aproximada, dé una aproximación de la probabilidad $P(X \leq 4)$ y compárela con la probabilidad exacta hallada en el inciso (b).
+
+        \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.80\textwidth]{img/2.png}
+        \caption{Aproximación de la probabilidad $P(X \leq 4)$ y comparación con la hallada en el inciso (b)}
+        \end{figure}
+
 \end{enumerate}
 
 \subsection{Ejercicio 15. Inspección de componentes electrónicos defectuosos}
