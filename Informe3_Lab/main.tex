@@ -278,7 +278,7 @@ En un envío de 10\,000 componentes electrónicos de cierto tipo, 300 son defect
         
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.80\textwidth]{img/3.png}
+        \includegraphics[width=0.80\textwidth]{img/4.png}
         \caption{Aproximación de la probabilidad $P(X \leq 3)$ y comparación con la hallada en el inciso (b)}
         \end{figure}
 
@@ -291,7 +291,44 @@ Supongamos que se toma una muestra aleatoria simple de 200 componentes del enví
 \begin{enumerate}[label=(\alph*)]
     \item La variable aleatoria $Y$ tiene una distribución hipergeométrica$(M_1, M_2, n)$, la cual puede aproximarse mediante una distribución binomial$(n, p)$, que a su vez puede aproximarse mediante una distribución Poisson$(\lambda)$. Especifique los parámetros de cada una de las distribuciones mencionadas en la última oración.
 
+        \textbf{Parámetros de las distribuciones.}
+
+        \begin{itemize}
+            \item \textbf{Hipergeométrica:} $Y \sim \text{Hipergeométrica}(M_1 = 300,\; M_2 = 9700,\; n = 200)$, donde $M_1$ es el número de componentes defectuosos, $M_2$ el de no defectuosos y $n$ el tamaño de la muestra.
+
+            \item \textbf{Binomial:} como la muestra es solo el 2\,\% del envío, $Y \approx \text{Binomial}(n = 200,\; p = 0.03)$, con $p = \frac{M_1}{M_1 + M_2} = \frac{300}{10\,000} = 0.03$.
+
+            \item \textbf{Poisson:} como $n$ es grande y $p$ es pequeño, $Y \approx \text{Poisson}(\lambda = 6)$, con $\lambda = np = 200 \times 0.03 = 6$.
+        \end{itemize}
+
     \item Utilice comandos de R para calcular la probabilidad exacta $P(Y \leq 10)$, así como las dos aproximaciones a esta probabilidad mencionadas en el inciso (a).
+            
+            \begin{itemize}
+                \item \textbf{Hipergeométrica (exacta):}
+                \[
+                P(Y \leq 10) = \sum_{y=0}^{10} \frac{\dbinom{300}{y}\dbinom{9700}{200-y}}{\dbinom{10\,000}{200}} \approx 0.9615,
+                \]
+                calculada con \texttt{phyper(10, m = 300, n = 9700, k = 200)}.
+
+                \item \textbf{Binomial (primera aproximación):}
+                \[
+                P(Y \leq 10) \approx \sum_{y=0}^{10} \binom{200}{y}(0.03)^{y}(0.97)^{200-y} \approx 0.9599,
+                \]
+                calculada con \texttt{pbinom(10, size = 200, prob = 0.03)}.
+
+                \item \textbf{Poisson (segunda aproximación):}
+                \[
+                P(Y \leq 10) \approx \sum_{y=0}^{10} \frac{e^{-6}\,6^{y}}{y!} \approx 0.9574,
+                \]
+                calculada con \texttt{ppois(10, lambda = 6)}.
+            \end{itemize}
+
+               \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.80\textwidth]{img/5.png}
+                \caption{Probabilidad exacta $P(Y \leq 10)$ y aproximaciones mediante distribuciones binomial y Poisson}
+                \end{figure}
+
 \end{enumerate}
 
 \section{Actividades pag. 157}
@@ -303,7 +340,32 @@ Una máquina fabrica neumáticos cuyo espesor de banda de rodamiento sigue una d
 \begin{enumerate}[label=(\alph*)]
     \item Halle la proporción esperada de neumáticos vendidos bajo la marca alternativa.
 
+        Si $T \sim N(\mu, \sigma^2)$, se estandariza con $Z = \dfrac{T - \mu}{\sigma} \sim N(0,1)$. Con $\mu = 10$ y $\sigma = 2$:
+        \[
+        P(T < 7.9) = P\left(Z < \frac{7.9 - 10}{2}\right) = P(Z < -1.05) = \Phi(-1.05) \approx 0.1469,
+        \]
+        calculada con \texttt{pnorm(7.9, mean = 10, sd = 2)}. Es decir, se espera que aproximadamente el 14.69\,\% de los neumáticos se venda como marca alternativa.
+
+                \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.80\textwidth]{img/6.png}
+                \caption{Proporción esperada de neumáticos vendidos bajo la marca alternativa}
+                \end{figure}
+
     \item La demanda de la marca alternativa de neumáticos es tal que el 30\% de la producción total debe venderse bajo el nombre de la marca alternativa. ¿A qué valor debería fijarse el espesor crítico, originalmente 7.9 mm, para satisfacer la demanda?
+        
+        Se busca $c$ tal que $P(T < c) = 0.30$. Sea $z_{0.30}$ el percentil 30 de la normal estándar, con $z_{0.30} \approx -0.5244$:
+        \[
+        c = \mu + z_{0.30}\,\sigma = 10 + (-0.5244)(2) \approx 8.9512 \text{ mm},
+        \]
+        calculado con \texttt{qnorm(0.30, mean = 10, sd = 2)}. El espesor crítico debe fijarse en aproximadamente 8.95 mm.
+
+                \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.80\textwidth]{img/7.png}
+                \caption{Espesor crítico para satisfacer la demanda de la marca alternativa}
+                \end{figure}
+
 \end{enumerate}
 
 \subsection{Ejercicio 11. Gráficos Q-Q normales con muestras simuladas}
