@@ -33,6 +33,29 @@
   showstringspaces=false
 }
 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstdefinestyle{estiloR}{
+    language=R,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray}\itshape,
+    stringstyle=\color{teal},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    showstringspaces=false,
+    columns=fullflexible,
+    keepspaces=true,
+    literate=
+        {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+        {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+        {ñ}{{\~n}}1 {Ñ}{{\~N}}1
+}
+\lstset{style=estiloR}
+
 \usepackage{enumitem}
 \newlist{glosario}{description}{1}
 \setlist[glosario]{
@@ -375,7 +398,36 @@ Responda las siguientes preguntas.
 \begin{enumerate}[label=(\alph*)]
     \item Utilice el comando de R \texttt{x=runif(50)} para generar una muestra simulada de tamaño 50 de la distribución uniforme$(0, 1)$ y utilice comandos como los dados en la Sección 3.5.2 para construir un gráfico Q-Q normal. ¿Podría la muestra simulada de 50 observaciones provenir de una distribución normal? Explique.
 
+        Los puntos del gráfico de la muestra uniforme$(0,1)$ siguen una curva en forma de ``S'' y se alejan de la recta, especialmente en los extremos. Esto se debe a que la uniforme tiene colas más ligeras que la normal. Por lo tanto, la muestra \textbf{no} parece provenir de una distribución normal.
+\vspace{1em}
+        \begin{lstlisting}
+        x <- runif(50)
+        qqnorm(x, main = "Q-Q normal: uniforme(0, 1)")
+        qqline(x)   
+        \end{lstlisting}
+
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.80\textwidth]{img/8.png}
+                \caption{Gráfico Q-Q normal de una muestra simulada de tamaño 50 de la distribución uniforme$(0, 1)$ en RStudio}
+            \end{figure}
+
     \item Utilice el comando de R \texttt{x=rgamma(50, 1, 1)} para generar una muestra simulada de tamaño 50 de la distribución gamma$(1, 1)$ (véase el Ejercicio 13) y utilice comandos como los dados en la Sección 3.5.2 para construir un gráfico Q-Q normal. ¿Podría la muestra simulada de 50 observaciones provenir de una distribución normal? Explique.
+
+        Los puntos del gráfico de la muestra gamma$(1,1)$ describen una curva que se aparta claramente de la recta, sobre todo en el extremo superior. Esto refleja la fuerte asimetría positiva de la distribución. Por lo tanto, la muestra no podría provenir de una distribución normal.
+        \vspace{1em}
+        \begin{lstlisting}
+        y <- rgamma(50, 1, 1)
+        qqnorm(y, main = "Q-Q normal: gamma(1, 1)")
+        qqline(y)   
+        \end{lstlisting}
+
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.80\textwidth]{img/9.png}
+                \caption{Gráfico Q-Q normal de una muestra simulada de tamaño 50 de la distribución uniforme$(1, 1)$ en RStudio}
+            \end{figure}
+
 \end{enumerate}
 
 \end{document}
